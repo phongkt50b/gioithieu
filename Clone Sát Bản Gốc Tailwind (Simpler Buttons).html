@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Readdy Site - Nguyễn Thanh Phong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nguyễn Thanh Phong - Tư vấn viên AIA Việt Nam: Bảo vệ tài sản, dòng tiền, thu nhập, tạo di sản bền vững.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap">
+  <link rel="icon" type="image/png" href="https://public.readdy.ai/gen_page/readdy-logo.png">
+  <style>
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Secular One", sans-serif;
+    }
+    .hero-gradient {
+      background-image:
+        linear-gradient(135deg, rgba(227, 6, 19, 0.95), rgba(185, 5, 15, 0.95)),
+        url('https://readdy.ai/api/search-image?query=Professional%20Vietnamese%20business%20consultant%20in%20modern%20office%20environment%2C%20confident%20financial%20advisor%20wearing%20business%20attire%2C%20clean%20corporate%20background%20with%20subtle%20AIA%20branding%20elements%2C%20professional%20headshot%20style%20photography%20with%20warm%20lighting%20and%20contemporary%20office%20setting&width=1920&height=1080&seq=hero-bg&orientation=landscape');
+      background-size:cover;
+      background-position:center;
+    }
+    .nav-btn-active {
+      @apply bg-red-600 text-white;
+    }
+    .nav-btn {
+      @apply px-4 py-2 rounded-full text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer whitespace-nowrap;
+    }
+
+    /* ========== BUTTON SYSTEM (Đơn giản, sạch) ========== */
+    .btn {
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      font-weight:600;
+      border-radius:9999px;
+      padding:.95rem 1.9rem;
+      font-size:0.95rem;
+      line-height:1;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition:all .22s cubic-bezier(.4,0,.2,1);
+      white-space:nowrap;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    .btn i {
+      font-size:1.15rem;
+      line-height:1;
+      position:relative;
+      top:-1px;
+    }
+    .btn-primary {
+      background:#ffffff;
+      color:#c8101a;
+      border:1px solid #fff;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.08),
+        0 6px 16px -6px rgba(0,0,0,.18);
+    }
+    .btn-primary:hover {
+      box-shadow:
+        0 3px 8px rgba(0,0,0,.12),
+        0 10px 24px -8px rgba(0,0,0,.22);
+      transform:translateY(-2px);
+    }
+    .btn-primary:active {
+      transform:translateY(0);
+      box-shadow:
+        0 2px 5px rgba(0,0,0,.16),
+        0 4px 14px -6px rgba(0,0,0,.24);
+    }
+    .btn-outline {
+      background:transparent;
+      color:#ffffff;
+      border:1.5px solid rgba(255,255,255,.85);
+    }
+    .btn-outline:hover {
+      background:rgba(255,255,255,.12);
+      border-color:#ffffff;
+    }
+    .btn-outline:active {
+      background:rgba(255,255,255,.18);
+    }
+    .btn:focus-visible {
+      outline:0;
+      box-shadow:0 0 0 3px rgba(255,255,255,.6), 0 0 0 6px rgba(200,16,26,.8);
+    }
+
+    /* Biến thể nhỏ */
+    .btn-sm {
+      padding:.7rem 1.35rem;
+      font-size:.8rem;
+    }
+
+    /* Floating buttons stack */
+    .floating-stack .btn {
+      width:100%;
+    }
+
+    @media (max-width:640px){
+      .btn {
+        width:100%;
+      }
+    }
+
+    /* Điều chỉnh khoảng cách hero buttons */
+    .hero-btn-group {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    /* Submit form dùng style primary thu gọn */
+    .btn-form {
+      padding:.85rem 1.75rem;
+      font-size:.9rem;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen bg-white">
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <div class="w-10 h-10 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center mr-3">
+            <span class="text-white font-bold text-lg">NP</span>
+          </div>
+          <h1 class="font-bold text-xl text-gray-800">Nguyễn Thanh Phong</h1>
+        </div>
+        <div id="mainNavButtons" class="hidden md:flex space-x-4">
+          <button data-target="home" class="nav-btn-active px-4 py-2 rounded-full transition-all cursor-pointer whitespace-nowrap">Trang chủ</button>
+          <button data-target="about" class="nav-btn">Về tôi</button>
+          <button data-target="services" class="nav-btn">Dịch vụ</button>
+          <button data-target="contact" class="nav-btn">Liên hệ</button>
+        </div>
+        <button id="mobileToggle" class="md:hidden p-2 text-gray-600 w-10 h-10 flex items-center justify-center cursor-pointer">
+          <i class="ri-menu-line text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden px-4 pb-4 space-y-2 hidden">
+      <button data-target="home" class="block w-full text-left px-4 py-3 rounded-xl bg-red-600 text-white">Trang chủ</button>
+      <button data-target="about" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Về tôi</button>
+      <button data-target="services" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Dịch vụ</button>
+      <button data-target="contact" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Liên hệ</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="pt-24 pb-20 hero-gradient text-white relative overflow-hidden min-h-screen flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-left space-y-8">
+          <div class="inline-block px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">
+            <i class="ri-shield-check-line mr-2"></i>Tư vấn viên AIA Việt Nam
+          </div>
+          <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+            Nguyễn Thanh Phong
+            <span class="block text-2xl lg:text-3xl font-normal mt-4 text-red-100">
+              Người đồng hành giúp bạn hoàn thành kế hoạch tài chính cuộc đời
+            </span>
+          </h1>
+          <p class="text-xl lg:text-2xl text-red-50 leading-relaxed">
+            Bảo vệ tài sản – Bảo vệ dòng tiền – Bảo vệ thu nhập – Tạo di sản bền vững cho gia đình bạn
+          </p>
+          <div class="hero-btn-group">
+            <a href="tel:0967140556" class="btn btn-primary">
+              <i class="ri-phone-line"></i>
+              <span>Liên hệ ngay: 0967 140 556</span>
+            </a>
+            <button data-target="contact" class="btn btn-outline">
+              <i class="ri-calendar-line"></i>
+              <span>Đặt lịch tư vấn miễn phí</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative">
+            <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl bg-white/10 backdrop-blur-sm p-6 shadow-2xl border border-white/20">
+              <img src="https://static.readdy.ai/image/a88e6637604e7df87ae98912dd74788f/6fd3fe817965d415159d64b6929673cc.jfif"
+                   alt="Nguyễn Thanh Phong - Tư vấn viên AIA"
+                   class="w-full h-full rounded-2xl object-cover object-top shadow-[0_10px_30px_-10px_rgba(0,0,0,.35)]">
+            </div>
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+              <i class="ri-award-line text-white text-3xl"></i>
+            </div>
+            <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
+              <i class="ri-shield-check-line text-white text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Về tôi</h2>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Xin chào, tôi là Nguyễn Thanh Phong</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Tôi không chỉ bán bảo hiểm – tôi đồng hành cùng bạn để xây dựng kế hoạch tài chính dài hạn, giúp bạn bảo vệ gia đình, chuẩn bị học phí cho con và an nhàn hưu trí.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                  <i class="ri-building-line text-red-600"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900">Chức vụ</p>
+                  <p class="text-gray-600">Trưởng nhóm Tư vấn Bảo hiểm – AIA Việt Nam</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                  <i class="ri-award-line text-blue-600"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900">Chứng chỉ</p>
+                  <p class="text-gray-600">Học viên VIP115 – Cộng Đồng Bảo Vệ Quyền Lợi Khách Hàng</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-gray-100">
+              <a href="https://www.facebook.com/groups/bvqlkhbhnt/?ref=share&mibextid=NSMWBT"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                <i class="ri-facebook-line mr-2"></i>
+                Tham gia Cộng Đồng Bảo Vệ Quyền Lợi Khách Hàng
+                <i class="ri-external-link-line ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-2xl text-center">
+            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="ri-shield-check-line text-white text-2xl"></i>
+            </div>
+            <h4 class="font-bold text-2xl text-gray-900 mb-2">5+</h4>
+            <p class="text-gray-600">Năm kinh nghiệm</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl text-center">
+            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="ri-group-line text-white text-2xl"></i>
+            </div>
+            <h4 class="font-bold text-2xl text-gray-900 mb-2">500+</h4>
+            <p class="text-gray-600">Khách hàng tin tưởng</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl text-center">
+            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="ri-award-line text-white text-2xl"></i>
+            </div>
+            <h4 class="font-bold text-2xl text-gray-900 mb-2">Top 10</h4>
+            <p class="text-gray-600">Tư vấn viên xuất sắc</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl text-center">
+            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="ri-customer-service-2-line text-white text-2xl"></i>
+            </div>
+            <h4 class="font-bold text-2xl text-gray-900 mb-2">24/7</h4>
+            <p class="text-gray-600">Hỗ trợ tận tâm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Dịch vụ</h2>
+        <p class="text-lg text-gray-600">Cung cấp giải pháp tài chính toàn diện, giúp bạn xây dựng tương lai vững chắc</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mb-5">
+            <i class="ri-shield-check-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Bảo vệ tài chính toàn diện</h3>
+          <p class="text-gray-600 mb-4">Tư vấn giải pháp thông minh bảo vệ tài sản, dòng tiền, thu nhập, tạo di sản.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-red-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
+            <i class="ri-line-chart-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Kế hoạch đầu tư thông minh</h3>
+          <p class="text-gray-600 mb-4">Xây dựng kế hoạch tài chính tích lũy, đầu tư hợp lý, an toàn.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-blue-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-5">
+            <i class="ri-file-search-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Review hợp đồng bảo hiểm</h3>
+          <p class="text-gray-600 mb-4">Review hợp đồng bảo hiểm cũ để đảm bảo quyền lợi đầy đủ, chắc chắn được chi trả.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-green-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5">
+            <i class="ri-discuss-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Tư vấn chuyên sâu</h3>
+          <p class="text-gray-600 mb-4">Giải đáp thắc mắc về điều khoản, quyền lợi, loại trừ.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-purple-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-5">
+            <i class="ri-file-list-3-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Hỗ trợ thủ tục</h3>
+          <p class="text-gray-600 mb-4">Hỗ trợ thủ tục hồ sơ y tế và bồi thường bảo hiểm.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-amber-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
+          <div class="w-14 h-14 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center mb-5">
+            <i class="ri-heart-2-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Chăm sóc khách hàng</h3>
+          <p class="text-gray-600 mb-4">Đồng hành và hỗ trợ khách hàng trong suốt quá trình sử dụng dịch vụ.</p>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-teal-600">Dịch vụ chuyên nghiệp</span>
+        </div>
+      </div>
+
+      <div class="mt-20 bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-3xl p-10 lg:p-14 text-white shadow-xl">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h3 class="text-3xl lg:text-4xl font-bold leading-tight mb-6">Hãy bắt đầu hành trình tài chính thông minh hôm nay!</h3>
+            <p class="text-lg text-red-100 mb-8">Tôi sẵn sàng giúp bạn xây dựng kế hoạch tài chính vững chắc, bảo vệ gia đình và tạo dựng tương lai an toàn.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="tel:0967140556" class="btn btn-primary">
+                <i class="ri-phone-line"></i>
+                Gọi ngay: 0967 140 556
+              </a>
+              <button data-target="contact" class="btn btn-outline">
+                <i class="ri-calendar-line"></i>
+                Đặt lịch tư vấn
+              </button>
+            </div>
+          </div>
+          <ul class="space-y-4 text-red-50 text-lg">
+            <li class="flex items-start"><span class="mr-3 text-white font-semibold">•</span>Tư vấn miễn phí Không phí tư vấn, cam kết minh bạch</li>
+            <li class="flex items-start"><span class="mr-3 text-white font-semibold">•</span>Uy tín chất lượng Đã được hàng trăm khách hàng tin tưởng</li>
+            <li class="flex items-start"><span class="mr-3 text-white font-semibold">•</span>Hỗ trợ 24/7 Luôn sẵn sàng hỗ trợ khi bạn cần</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Liên hệ</h2>
+        <p class="text-lg text-gray-600">Hãy liên hệ để được tư vấn miễn phí về kế hoạch tài chính phù hợp</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Thông tin liên hệ</h3>
+          <ul class="space-y-4 text-gray-700 mb-8">
+            <li><strong class="text-gray-900">Họ tên:</strong> Nguyễn Thanh Phong</li>
+            <li><strong class="text-gray-900">Điện thoại:</strong> <a class="text-red-600 hover:underline" href="tel:0967140556">0967 140 556</a></li>
+            <li><strong class="text-gray-900">Email:</strong> <a class="text-red-600 hover:underline" href="mailto:nguyenphong.tfac@gmail.com">nguyenphong.tfac@gmail.com</a></li>
+            <li><strong class="text-gray-900">Công ty:</strong> AIA Việt Nam</li>
+            <li><strong class="text-gray-900">Khu vực:</strong> TP. Hồ Chí Minh và các tỉnh lân cận</li>
+          </ul>
+          <div class="bg-red-600 text-white p-6 rounded-2xl text-base leading-relaxed">
+            Tư vấn viên AIA Việt Nam - Đồng hành cùng bạn xây dựng kế hoạch tài chính vững chắc, bảo vệ gia đình và tạo dựng tương lai an toàn.
+          </div>
+        </div>
+        <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Đặt lịch tư vấn miễn phí</h3>
+          <form id="contactForm" class="space-y-6" novalidate>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Họ và tên *</label>
+              <input name="name" required placeholder="Nhập họ tên" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition" />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Số điện thoại *</label>
+              <input name="phone" required placeholder="0967..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition" />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+              <input type="email" name="email" placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition" />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Độ tuổi</label>
+              <select name="age" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition">
+                <option value="">Chọn độ tuổi</option>
+                <option>20-30 tuổi</option>
+                <option>31-40 tuổi</option>
+                <option>41-50 tuổi</option>
+                <option>51-60 tuổi</option>
+                <option>Trên 60 tuổi</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Dịch vụ quan tâm</label>
+              <select name="service" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition">
+                <option value="">Chọn dịch vụ</option>
+                <option>Bảo hiểm sức khỏe</option>
+                <option>Bảo hiểm nhân thọ</option>
+                <option>Bảo hiểm giáo dục</option>
+                <option>Kế hoạch hưu trí</option>
+                <option>Đầu tư tài chính</option>
+                <option>Khác</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Thời gian liên hệ thuận tiện</label>
+              <select name="time" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition">
+                <option value="">Chọn thời gian</option>
+                <option>Buổi sáng (8h - 12h)</option>
+                <option>Buổi chiều (13h - 17h)</option>
+                <option>Buổi tối (18h - 21h)</option>
+                <option>Cuối tuần</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Ghi chú thêm</label>
+              <textarea name="note" placeholder="Ghi chú..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-4 focus:ring-red-200 focus:border-red-600 outline-none transition min-h-[140px]"></textarea>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 items-start">
+              <button type="submit" class="btn btn-primary btn-form">
+                <i class="ri-send-plane-2-line"></i>
+                Gửi yêu cầu tư vấn
+              </button>
+              <p class="text-sm text-gray-500">Tôi sẽ phản hồi trong vòng 12 giờ.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid md:grid-cols-4 gap-12">
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center mr-3">
+              <span class="text-white font-bold text-lg">NP</span>
+            </div>
+            <span class="font-bold text-lg text-gray-800">Nguyễn Thanh Phong</span>
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Tư vấn viên AIA Việt Nam - Đồng hành cùng bạn xây dựng kế hoạch tài chính vững chắc, bảo vệ gia đình và tạo dựng tương lai an toàn.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-4">Liên hệ</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>Điện thoại: <a href="tel:0967140556" class="text-red-600 hover:underline">0967 140 556</a></li>
+            <li>Email: <a href="mailto:nguyenphong.tfac@gmail.com" class="text-red-600 hover:underline">nguyenphong.tfac@gmail.com</a></li>
+            <li>Khu vực: TP. Hồ Chí Minh và các tỉnh lân cận</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-4">Dịch vụ</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm sức khỏe</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm nhân thọ</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm giáo dục</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Kế hoạch hưu trí</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Đầu tư tài chính</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Review hợp đồng</button></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-900 mb-4">Cam kết</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Minh bạch – Chuyên nghiệp – Đồng hành dài hạn – Tối ưu quyền lợi khách hàng.
+          </p>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-gray-100 text-center">
+        <p class="text-sm text-gray-500">
+          Made with Readdy • © 2024 Nguyễn Thanh Phong • AIA Việt Nam
+        </p>
+        <p class="text-xs text-gray-400 mt-2">Phiên bản tái tạo nội dung – Không phải trang chính thức của AIA</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating buttons -->
+  <div class="fixed bottom-6 right-6 flex flex-col gap-3 w-[220px] floating-stack">
+    <a href="tel:0967140556" class="btn btn-primary btn-sm">
+      <i class="ri-phone-line"></i>
+      Gọi 0967 140 556
+    </a>
+    <button data-target="contact" class="btn btn-outline btn-sm">
+      <i class="ri-calendar-line"></i>
+      Đặt lịch
+    </button>
+  </div>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(el){
+        window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+      }
+    }
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-target]');
+      if(btn){
+        const id = btn.getAttribute('data-target');
+        scrollToId(id);
+        document.querySelectorAll('#mainNavButtons button').forEach(b=>{
+          b.classList.remove('nav-btn-active');
+          b.classList.add('nav-btn');
+          if(b.getAttribute('data-target')===id){
+            b.classList.add('nav-btn-active');
+            b.classList.remove('nav-btn');
+          }
+        });
+        if(window.innerWidth < 768){
+          mobileMenu.classList.add('hidden');
+        }
+      }
+    });
+
+    const form = document.getElementById('contactForm');
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name?.trim() || !data.phone?.trim()){
+        alert('Vui lòng nhập Họ tên và Số điện thoại.');
+        return;
+      }
+      if(!/^[0-9+().\\s-]{8,20}$/.test(data.phone)){
+        alert('Số điện thoại không hợp lệ.');
+        return;
+      }
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      const old = btn.innerHTML;
+      btn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Đang gửi...';
+      setTimeout(()=>{
+        alert('Đã nhận thông tin. Tôi sẽ liên hệ sớm!');
+        form.reset();
+        btn.disabled = false;
+        btn.innerHTML = old;
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
