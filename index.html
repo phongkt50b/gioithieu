@@ -171,6 +171,14 @@
     .fade-in.delay-3 { animation-delay:.34s; }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
   </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0",
+    "marked": "https://aistudiocdn.com/marked@^16.3.0"
+  }
+}
+</script>
 </head>
 <body class="antialiased min-h-screen bg-white">
   <!-- NAV -->
@@ -183,10 +191,11 @@
           </div>
           <h1 class="font-bold text-xl text-gray-800">Nguyễn Thanh Phong</h1>
         </div>
-        <div id="mainNavButtons" class="hidden md:flex space-x-4">
+        <div id="mainNavButtons" class="hidden md:flex space-x-4 items-center">
           <button data-target="home" class="nav-btn-active px-4 py-2 rounded-full transition-all cursor-pointer whitespace-nowrap">Trang chủ</button>
           <button data-target="about" class="nav-btn">Về tôi</button>
           <button data-target="services" class="nav-btn">Dịch vụ</button>
+          <a href="sanpham.html" class="nav-btn">Sản phẩm</a>
           <button data-target="contact" class="nav-btn">Liên hệ</button>
         </div>
         <button id="mobileToggle" class="md:hidden p-2 text-gray-600 w-10 h-10 flex items-center justify-center cursor-pointer">
@@ -198,6 +207,7 @@
       <button data-target="home" class="block w-full text-left px-4 py-3 rounded-xl bg-red-600 text-white">Trang chủ</button>
       <button data-target="about" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Về tôi</button>
       <button data-target="services" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Dịch vụ</button>
+      <a href="sanpham.html" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Sản phẩm</a>
       <button data-target="contact" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-red-50 text-gray-700">Liên hệ</button>
     </div>
   </nav>
@@ -401,7 +411,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-gray-50">
+  <section id="contact" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-in">
         <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Liên hệ</h2>
@@ -476,22 +486,21 @@
           </p>
         </div>
         <div>
+          <h4 class="font-semibold text-gray-900 mb-4">Điều hướng</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><button data-target="home" class="hover:text-red-600">Trang chủ</button></li>
+            <li><button data-target="about" class="hover:text-red-600">Về tôi</button></li>
+            <li><button data-target="services" class="hover:text-red-600">Dịch vụ</button></li>
+            <li><a href="sanpham.html" class="hover:text-red-600">Sản phẩm</a></li>
+            <li><button data-target="contact" class="hover:text-red-600">Liên hệ</button></li>
+          </ul>
+        </div>
+        <div>
           <h4 class="font-semibold text-gray-900 mb-4">Liên hệ</h4>
           <ul class="space-y-2 text-sm text-gray-600">
             <li>Điện thoại: <a href="tel:0967140556" class="text-red-600 hover:underline">0967 140 556</a></li>
             <li>Email: <a href="mailto:nguyenphong.tfac@gmail.com" class="text-red-600 hover:underline">nguyenphong.tfac@gmail.com</a></li>
             <li>Khu vực: TP. Hồ Chí Minh & lân cận</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-900 mb-4">Dịch vụ</h4>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm sức khỏe</button></li>
-            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm nhân thọ</button></li>
-            <li><button data-target="services" class="hover:text-red-600">Bảo hiểm giáo dục</button></li>
-            <li><button data-target="services" class="hover:text-red-600">Kế hoạch hưu trí</button></li>
-            <li><button data-target="services" class="hover:text-red-600">Đầu tư tài chính</button></li>
-            <li><button data-target="services" class="hover:text-red-600">Review hợp đồng</button></li>
           </ul>
         </div>
         <div>
@@ -546,7 +555,7 @@
       if(btn){
         const id = btn.getAttribute('data-target');
           scrollToId(id);
-          document.querySelectorAll('#mainNavButtons button').forEach(b=>{
+          document.querySelectorAll('#mainNavButtons button, #mainNavButtons a').forEach(b=>{
             b.classList.remove('nav-btn-active');
             b.classList.add('nav-btn');
             if(b.getAttribute('data-target')===id){
@@ -568,6 +577,18 @@
       });
     }, { threshold:.08 });
     document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+    
+    window.addEventListener('load', () => {
+        if (window.location.hash) {
+            const id = window.location.hash.substring(1);
+            const el = document.getElementById(id);
+            if (el) {
+                setTimeout(() => {
+                    scrollToId(id);
+                }, 100);
+            }
+        }
+    });
   </script>
 </body>
 </html>
