@@ -160,6 +160,7 @@
             header.addEventListener('click', () => {
                 const isExpanded = header.getAttribute('aria-expanded') === 'true';
                 
+                // Close all other accordions in the same group
                 items.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
@@ -167,6 +168,7 @@
                     }
                 });
                 
+                // Toggle the clicked accordion
                 if (isExpanded) {
                     header.setAttribute('aria-expanded', 'false');
                     content.style.maxHeight = null;
@@ -180,20 +182,46 @@
 
     async function loadProductImages() {
         try {
-            const response = await fetch('images.json');
+            const response = await fetch('images.json?v=' + Date.now()); // Add cache buster
             if (!response.ok) {
                 throw new Error('Không thể tải file images.json');
             }
             const imageConfig = await response.json();
             const imageFolderPath = 'hinhanh/';
 
+            // Function to check if an image URL is valid
+            const checkImage = (src) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve({ src, status: 'ok' });
+                    img.onerror = () => resolve({ src, status: 'error' });
+                    img.src = src;
+                });
+            };
+
             for (const productId in imageConfig) {
                 const container = document.getElementById(productId);
-                const imageList = imageConfig[productId];
+                if (!container) continue;
+
+                // Filter out empty strings from the config
+                const imageFiles = imageConfig[productId].filter(file => file && file.trim() !== '');
                 
-                if (container && imageList && imageList.length > 0) {
-                    const imagesHtml = imageList.map(imageFile => `
-                        <img src="${imageFolderPath}${imageFile}" alt="Hình ảnh sản phẩm" class="rounded-lg shadow-md">
+                if (imageFiles.length === 0) {
+                     container.innerHTML = `
+                        <div class="p-5 border-t border-gray-200">
+                            <p class="text-gray-500">Chưa có hình ảnh cho sản phẩm này.</p>
+                        </div>
+                    `;
+                    continue;
+                }
+                
+                const imagePaths = imageFiles.map(file => `${imageFolderPath}${file}`);
+                const imageChecks = await Promise.all(imagePaths.map(checkImage));
+                const validImages = imageChecks.filter(result => result.status === 'ok').map(result => result.src);
+
+                if (validImages.length > 0) {
+                    const imagesHtml = validImages.map(src => `
+                        <img src="${src}" alt="Hình ảnh sản phẩm" class="rounded-lg shadow-md">
                     `).join('');
 
                     container.innerHTML = `
@@ -203,8 +231,8 @@
                             </div>
                         </div>
                     `;
-                } else if (container) {
-                     container.innerHTML = `
+                } else {
+                    container.innerHTML = `
                         <div class="p-5 border-t border-gray-200">
                             <p class="text-gray-500">Chưa có hình ảnh cho sản phẩm này.</p>
                         </div>
@@ -213,13 +241,11 @@
             }
         } catch (error) {
             console.error('Lỗi khi tải hình ảnh sản phẩm:', error);
-            // Có thể hiển thị thông báo lỗi cho người dùng ở đây
         }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
         loadProductImages().then(() => {
-            // Khởi tạo accordion sau khi đã tải và chèn hình ảnh vào DOM
             setupAccordion('main-products-accordion');
             setupAccordion('rider-products-accordion');
         });
