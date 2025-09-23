@@ -19,20 +19,9 @@
     }
     .nav-btn-active { @apply bg-red-600 text-white; }
     .nav-btn { @apply px-4 py-2 rounded-full text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer whitespace-nowrap; }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .accordion-header i {
-        transition: transform 0.3s ease;
-    }
-    .accordion-header[aria-expanded="true"] i {
-        transform: rotate(180deg);
-    }
   </style>
 </head>
-<body class="antialiased min-h-screen bg-gray-50">
+<body class="antialiased min-h-screen bg-white">
   <!-- NAV -->
   <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,69 +57,9 @@
     </div>
   </nav>
 
-  <main class="py-20" style="padding-top: 100px;">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Sản phẩm và Giải pháp</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Khám phá các giải pháp bảo hiểm toàn diện của AIA, được thiết kế để bảo vệ bạn và gia đình trước mọi rủi ro, đồng thời xây dựng một tương lai tài chính vững chắc.
-        </p>
-      </div>
-
-      <!-- Main Products Section -->
-      <div class="mb-16">
-        <h3 class="text-3xl font-bold text-gray-800 mb-8 border-l-4 border-red-600 pl-4">Sản phẩm chính</h3>
-        <div class="space-y-4" id="main-products-accordion">
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="main-prod-1"><span>1. Khoẻ Trọn Vẹn</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="main-prod-1" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="main-prod-2"><span>2. Khoẻ Bình An</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="main-prod-2" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="main-prod-3"><span>3. Vững Tương Lai</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="main-prod-3" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="main-prod-4"><span>4. An Bình Ưu Việt</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="main-prod-4" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="main-prod-5"><span>5. Trọn Tâm An</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="main-prod-5" class="accordion-content"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Rider Products Section -->
-      <div>
-        <h3 class="text-3xl font-bold text-gray-800 mb-8 border-l-4 border-red-600 pl-4">Sản phẩm bán kèm (Rider)</h3>
-        <div class="space-y-4" id="rider-products-accordion">
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="rider-prod-1"><span>1. Thẻ sức khoẻ Bùng Gia Lực</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="rider-prod-1" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="rider-prod-2"><span>2. Bệnh hiểm nghèo 2.0</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="rider-prod-2" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="rider-prod-3"><span>3. Tai nạn</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="rider-prod-3" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="rider-prod-4"><span>4. Hỗ trợ viện phí</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="rider-prod-4" class="accordion-content"></div>
-          </div>
-          <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <button class="accordion-header w-full flex justify-between items-center text-left p-5 text-lg font-semibold text-gray-800 hover:bg-red-50 focus:outline-none transition-colors" aria-expanded="false" aria-controls="rider-prod-5"><span>5. Miễn thu phí 3.0</span><i class="ri-arrow-down-s-line"></i></button>
-            <div id="rider-prod-5" class="accordion-content"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <main style="padding-top: 70px; height: 100vh; box-sizing: border-box;">
+    <!-- TODO: Cập nhật src cho iframe sản phẩm của bạn. Trỏ đến file sanpham-content.html sau khi bạn đưa nó lên repo mới. -->
+    <iframe src="https://phongkt50b.github.io/thongtinsanpham/" title="Sản phẩm" style="width: 100%; height: 100%; border: none;"></iframe>
   </main>
   
   <script>
@@ -143,112 +72,9 @@
       if (btn) {
         e.preventDefault();
         const id = btn.getAttribute('data-target');
+        // Điều hướng về trang chủ với hash tương ứng
         window.location.href = 'index.html#' + id;
       }
-    });
-
-    function setupAccordion(containerId) {
-        const accordionContainer = document.getElementById(containerId);
-        if (!accordionContainer) return;
-
-        const items = accordionContainer.querySelectorAll('.accordion-item');
-
-        items.forEach(item => {
-            const header = item.querySelector('.accordion-header');
-            const content = item.querySelector('.accordion-content');
-
-            header.addEventListener('click', () => {
-                const isExpanded = header.getAttribute('aria-expanded') === 'true';
-                
-                // Close all other accordions in the same group
-                items.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
-                    }
-                });
-                
-                // Toggle the clicked accordion
-                if (isExpanded) {
-                    header.setAttribute('aria-expanded', 'false');
-                    content.style.maxHeight = null;
-                } else {
-                    header.setAttribute('aria-expanded', 'true');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            });
-        });
-    }
-
-    async function loadProductImages() {
-        try {
-            const response = await fetch('images.json?v=' + Date.now()); // Add cache buster
-            if (!response.ok) {
-                throw new Error('Không thể tải file images.json');
-            }
-            const imageConfig = await response.json();
-            const imageFolderPath = 'images/'; // <--- Corrected path
-
-            // Function to check if an image URL is valid
-            const checkImage = (src) => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve({ src, status: 'ok' });
-                    img.onerror = () => resolve({ src, status: 'error' });
-                    img.src = src;
-                });
-            };
-
-            for (const productId in imageConfig) {
-                const container = document.getElementById(productId);
-                if (!container) continue;
-
-                // Filter out empty strings from the config
-                const imageFiles = imageConfig[productId].filter(file => file && file.trim() !== '');
-                
-                if (imageFiles.length === 0) {
-                     container.innerHTML = `
-                        <div class="p-5 border-t border-gray-200">
-                            <p class="text-gray-500">Chưa có hình ảnh cho sản phẩm này.</p>
-                        </div>
-                    `;
-                    continue;
-                }
-                
-                const imagePaths = imageFiles.map(file => `${imageFolderPath}${file}`);
-                const imageChecks = await Promise.all(imagePaths.map(checkImage));
-                const validImages = imageChecks.filter(result => result.status === 'ok').map(result => result.src);
-
-                if (validImages.length > 0) {
-                    const imagesHtml = validImages.map(src => `
-                        <img src="${src}" alt="Hình ảnh sản phẩm" class="rounded-lg shadow-md w-full h-auto">
-                    `).join('');
-
-                    container.innerHTML = `
-                        <div class="p-5 border-t border-gray-200">
-                            <div class="grid grid-cols-1 gap-6">
-                                ${imagesHtml}
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = `
-                        <div class="p-5 border-t border-gray-200">
-                            <p class="text-gray-500">Chưa có hình ảnh cho sản phẩm này.</p>
-                        </div>
-                    `;
-                }
-            }
-        } catch (error) {
-            console.error('Lỗi khi tải hình ảnh sản phẩm:', error);
-        }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        loadProductImages().then(() => {
-            setupAccordion('main-products-accordion');
-            setupAccordion('rider-products-accordion');
-        });
     });
   </script>
 </body>
