@@ -170,6 +170,23 @@
     .fade-in.delay-2 { animation-delay:.22s; }
     .fade-in.delay-3 { animation-delay:.34s; }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+    /* Slider Styles */
+    .slider-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .slider-dot.active {
+      background: white;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
+    }
+    .slider-track img {
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
   </style>
 <script type="importmap">
 {
@@ -223,20 +240,20 @@
   <section id="home" class="pt-28 pb-20 hero-gradient text-white relative overflow-hidden min-h-screen flex items-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-[2]">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="text-left space-y-8 fade-in">
+        <div class="text-left space-y-6 fade-in">
           <div class="inline-block px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">
             <i class="ri-shield-check-line mr-2"></i>Tư vấn viên AIA Việt Nam
           </div>
           <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
             Nguyễn Thanh Phong
-            <span class="block text-2xl lg:text-3xl font-normal mt-4 text-red-100">
+            <span class="block text-2xl lg:text-3xl font-normal mt-3 text-red-100">
               Người đồng hành giúp bạn hoàn thành kế hoạch tài chính cuộc đời
             </span>
           </h1>
-          <p class="text-xl lg:text-2xl text-red-50 leading-relaxed">
+          <p class="text-lg lg:text-xl text-red-50 leading-relaxed">
             Bảo vệ tài sản – Bảo vệ dòng tiền – Bảo vệ thu nhập – Tạo di sản bền vững cho gia đình bạn
           </p>
-          <div class="flex gap-14 items-center pt-2">
+          <div class="flex gap-14 items-center pt-4">
             <div class="flex gap-14">
               <a href="tel:0967140556" class="btn-icon btn-icon--phone" title="Gọi">
                 <i class="ri-phone-line"></i><span class="sr-only">Gọi điện</span>
@@ -279,178 +296,158 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Về tôi</h2>
+  <section id="about" class="py-14 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flow-root">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Về tôi</h2>
       </div>
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-8 fade-in delay-1">
-          <div class="bg-white p-8 rounded-2xl shadow-lg">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Xin chào, tôi là Nguyễn Thanh Phong</h3>
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-              Tôi không chỉ bán bảo hiểm – tôi đồng hành cùng bạn để xây dựng kế hoạch tài chính dài hạn, giúp bạn bảo vệ gia đình, chuẩn bị học phí cho con và an nhàn hưu trí.
-            </p>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                  <i class="ri-building-line text-red-600"></i>
+      
+      <div class="lg:float-right lg:w-5/12 xl:w-2/5 lg:ml-12 mb-8 fade-in delay-1">
+          <div id="image-slider" class="relative rounded-2xl shadow-lg overflow-hidden">
+            <div class="slider-track flex transition-transform duration-700 ease-in-out">
+              <img src="images/gioithieu-01.jpg" alt="Giới thiệu về Nguyễn Thanh Phong 1" class="w-full flex-shrink-0 object-cover">
+              <img src="images/gioithieu-02.jpg" alt="Giới thiệu về Nguyễn Thanh Phong 2" class="w-full flex-shrink-0 object-cover">
+              <img src="images/gioithieu-03.jpg" alt="Giới thiệu về Nguyễn Thanh Phong 3" class="w-full flex-shrink-0 object-cover">
+            </div>
+            <div class="slider-dots absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            </div>
+          </div>
+      </div>
+
+      <div class="fade-in">
+          <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-lg border border-gray-100 h-full">
+              <h3 class="text-2xl font-bold text-gray-900 mb-5">Minh bạch & Chuyên môn là nền tảng</h3>
+              <div class="text-base text-gray-700 leading-7 space-y-4">
+                  <p>
+                      Ngoài vai trò là một nhà tư vấn bảo hiểm nhân thọ, tôi còn là thành viên Ban Quản trị tương lai của cộng đồng <a href="#" class="text-red-600 hover:underline"><strong>Bảo vệ Quyền lợi Khách hàng</strong></a> – nơi hoạt động với sứ mệnh xây dựng một thị trường bảo hiểm công bằng và minh bạch tại Việt Nam.
+                  </p>
+                  <p>
+                      Với nền tảng <strong>10 năm kinh nghiệm trong lĩnh vực kiểm toán, tài chính và quản trị</strong>, tôi không nhìn nhận bảo hiểm đơn thuần là một sản phẩm, mà là một công cụ tài chính quan trọng. Tôi áp dụng góc nhìn chuyên môn này để giúp bạn:
+                  </p>
+                  <ul class="list-disc list-inside space-y-2 pl-2">
+                      <li><strong>Hiểu đúng</strong> bản chất của bảo hiểm.</li>
+                      <li><strong>Tin tưởng</strong> vào kế hoạch tài chính bạn lựa chọn.</li>
+                      <li><strong>Sử dụng hiệu quả</strong> hợp đồng để bảo vệ tài sản, bảo vệ tương lai các thế hệ tiếp theo và bảo toàn di sản gia đình.</li>
+                  </ul>
+                  <p class="pt-2">
+                      Triết lý của tôi rất rõ ràng: Niềm tin được xây dựng từ sự minh bạch và chuyên môn, không phải từ mối quan-hệ-thân-quen.
+                  </p>
+              </div>
+              <div class="mt-6 pt-6 border-t border-gray-100 space-y-5">
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="ri-building-line text-red-600"></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Chức vụ</p>
+                    <p class="text-gray-600 text-sm">Trưởng nhóm Tư vấn Bảo hiểm – AIA Việt Nam</p>
+                  </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-gray-900">Chức vụ</p>
-                  <p class="text-gray-600">Trưởng nhóm Tư vấn Bảo hiểm – AIA Việt Nam</p>
+                <div class="flex items-center space-x-4">
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="ri-award-line text-blue-600"></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Chứng chỉ</p>
+                    <p class="text-gray-600 text-sm">Học viên VIP115 – Cộng Đồng Bảo Vệ Quyền Lợi Khách Hàng</p>
+                  </div>
                 </div>
               </div>
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <i class="ri-award-line text-blue-600"></i>
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-900">Chứng chỉ</p>
-                  <p class="text-gray-600">Học viên VIP115 – Cộng Đồng Bảo Vệ Quyền Lợi Khách Hàng</p>
-                </div>
-              </div>
-            </div>
-            <div class="mt-6 pt-6 border-t border-gray-100">
-              <a href="https://www.facebook.com/groups/bvqlkhbhnt/?ref=share&mibextid=NSMWBT"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                <i class="ri-facebook-line mr-2"></i>
-                Tham gia Cộng Đồng Bảo Vệ Quyền Lợi Khách Hàng
-                <i class="ri-external-link-line ml-2"></i>
-              </a>
-            </div>
           </div>
-        </div>
-        <div class="grid grid-cols-2 gap-6 fade-in delay-2">
-          <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-2xl text-center">
-            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="ri-shield-check-line text-white text-2xl"></i>
-            </div>
-            <h4 class="font-bold text-2xl text-gray-900 mb-2">5+</h4>
-            <p class="text-gray-600">Năm kinh nghiệm</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl text-center">
-            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="ri-group-line text-white text-2xl"></i>
-            </div>
-            <h4 class="font-bold text-2xl text-gray-900 mb-2">500+</h4>
-            <p class="text-gray-600">Khách hàng tin tưởng</p>
-          </div>
-          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl text-center">
-            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="ri-award-line text-white text-2xl"></i>
-            </div>
-            <h4 class="font-bold text-2xl text-gray-900 mb-2">Top 10</h4>
-            <p class="text-gray-600">Tư vấn viên xuất sắc</p>
-          </div>
-          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl text-center">
-            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="ri-customer-service-2-line text-white text-2xl"></i>
-            </div>
-            <h4 class="font-bold text-2xl text-gray-900 mb-2">24/7</h4>
-            <p class="text-gray-600">Hỗ trợ tận tâm</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Dịch vụ</h2>
-        <p class="text-lg text-gray-600">Cung cấp giải pháp tài chính toàn diện, giúp bạn xây dựng tương lai vững chắc</p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in delay-1">
-        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-          <div class="w-14 h-14 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mb-5">
-            <i class="ri-shield-check-line text-2xl"></i>
+  <section id="services" class="py-14 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12 fade-in">
+              <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Dịch vụ của tôi</h2>
+              <p class="text-base sm:text-lg text-gray-600">Giải pháp tài chính chuyên nghiệp dựa trên sự minh bạch và quyền lợi khách hàng.</p>
           </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">Bảo vệ tài chính toàn diện</h3>
-          <p class="text-gray-600 mb-4">Tư vấn giải pháp thông minh bảo vệ tài sản, dòng tiền, thu nhập, tạo di sản.</p>
-          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-red-600">Chuyên nghiệp</span>
-        </div>
-        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-          <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
-            <i class="ri-line-chart-line text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">Kế hoạch đầu tư thông minh</h3>
-          <p class="text-gray-600 mb-4">Xây dựng kế hoạch tài chính tích lũy, đầu tư hợp lý, an toàn.</p>
-          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-blue-600">Chuyên nghiệp</span>
-        </div>
-        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-          <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-5">
-            <i class="ri-file-search-line text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">Review hợp đồng bảo hiểm</h3>
-          <p class="text-gray-600 mb-4">Đảm bảo quyền lợi đầy đủ và tối ưu phương án hiện tại.</p>
-          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-green-600">Chuyên nghiệp</span>
-        </div>
-        <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-          <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5">
-            <i class="ri-discuss-line text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3 text-gray-900">Tư vấn chuyên sâu</h3>
-          <p class="text-gray-600 mb-4">Giải đáp điều khoản, quyền lợi, loại trừ minh bạch.</p>
-          <span class="inline-block text-xs font-semibold uppercase tracking-wide text-purple-600">Chuyên nghiệp</span>
-        </div>
-          <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-            <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-5">
-              <i class="ri-file-list-3-line text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-3 text-gray-900">Hỗ trợ thủ tục</h3>
-            <p class="text-gray-600 mb-4">Hồ sơ y tế & bồi thường xử lý rõ – nhanh – chuẩn.</p>
-            <span class="inline-block text-xs font-semibold uppercase tracking-wide text-amber-600">Chuyên nghiệp</span>
-          </div>
-          <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white">
-            <div class="w-14 h-14 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center mb-5">
-              <i class="ri-heart-2-line text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-3 text-gray-900">Chăm sóc khách hàng</h3>
-            <p class="text-gray-600 mb-4">Đồng hành trọn vòng đời hợp đồng & nhu cầu phát sinh.</p>
-            <span class="inline-block text-xs font-semibold uppercase tracking-wide text-teal-600">Chuyên nghiệp</span>
+          <div class="grid md:grid-cols-2 gap-8 fade-in delay-1">
+              
+              <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white flex flex-col">
+                  <div class="w-14 h-14 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mb-5">
+                      <i class="ri-slideshow-3-line text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3 text-gray-900">Tư vấn Giải pháp Bảo hiểm Chuyên sâu</h3>
+                  <p class="text-gray-600 text-base leading-7 mb-4 flex-grow">Lắng nghe nhu cầu và phân tích tình hình tài chính của bạn để thiết kế giải pháp bảo vệ phù hợp nhất, đảm bảo đúng mục tiêu và tối ưu trong ngân sách cho phép.</p>
+                  <span class="inline-block text-xs font-semibold uppercase tracking-wide text-red-600 mt-2">Tận tâm & Chuyên nghiệp</span>
+              </div>
+
+              <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white flex flex-col">
+                  <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
+                      <i class="ri-file-search-line text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3 text-gray-900">Review & Tối ưu Hợp đồng</h3>
+                  <div class="text-gray-600 text-base leading-7 mb-4 space-y-3 flex-grow">
+                    <p>Bạn có biết, nhiều hợp đồng bảo hiểm có thể chứa điều khoản chưa tối ưu hoặc có nguy cơ bị vô hiệu? Khi rủi ro xảy ra, việc chi trả có thể không như kỳ vọng.</p>
+                    <p>Dự án <strong>"Review 10.000 Hợp đồng Bảo hiểm"</strong> của chúng tôi giúp bạn:</p>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>Rà soát tính hợp lệ và các rủi ro tiềm ẩn.</li>
+                        <li>Tư vấn hợp đồng sắp đáo hạn (nên tiếp tục hay dừng lại).</li>
+                        <li>Tối ưu hóa quyền lợi để bảo vệ kế hoạch tài chính trọn vẹn.</li>
+                    </ul>
+                  </div>
+                  <span class="inline-block text-xs font-semibold uppercase tracking-wide text-blue-600 mt-2">Vì quyền lợi của bạn</span>
+              </div>
+
+              <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white flex flex-col">
+                  <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-5">
+                      <i class="ri-file-shield-2-line text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3 text-gray-900">Hỗ trợ Giải quyết Quyền lợi Bồi thường</h3>
+                  <p class="text-gray-600 text-base leading-7 mb-4 flex-grow">Với vai trò là người bảo vệ quyền lợi khách hàng, tôi cung cấp dịch vụ hỗ trợ thủ tục bồi thường một cách độc lập, đứng về phía bạn để đảm bảo quyền lợi được chi trả đúng, đủ và nhanh chóng, áp dụng cho khách hàng của <strong>tất cả các công ty bảo hiểm.</strong></p>
+                  <span class="inline-block text-xs font-semibold uppercase tracking-wide text-green-600 mt-2">Độc lập & Minh bạch</span>
+              </div>
+
+              <div class="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition bg-white flex flex-col">
+                  <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5">
+                      <i class="ri-share-forward-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-semibold mb-3 text-gray-900">Kết nối Mạng lưới Tư vấn viên Uy tín</h3>
+                  <p class="text-gray-600 text-base leading-7 mb-4 flex-grow">Nếu bạn muốn tìm hiểu sản phẩm của các công ty khác, tôi sẵn sàng kết nối bạn với mạng lưới những tư vấn viên tinh hoa thuộc cộng đồng Bảo vệ Quyền lợi Khách hàng. Họ đều là những thành viên BQT, BQT tương lai hoặc học viên VIP, cam kết hoạt động với sự chính trực và chuyên môn cao nhất.</p>
+                  <span class="inline-block text-xs font-semibold uppercase tracking-wide text-purple-600 mt-2">Chính trực & Tin cậy</span>
+              </div>
           </div>
       </div>
-    </div>
   </section>
 
   <!-- SUPPORT INFO SECTION -->
-    <section id="support" class="py-20 bg-gray-50">
+    <section id="support" class="py-14 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Thông tin & Dịch vụ Hỗ trợ</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Tổng hợp các thông tin quan trọng về thời gian chờ, hồ sơ cần thiết và các liên kết nhanh đến dịch vụ của AIA.</p>
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Thông tin & Dịch vụ Hỗ trợ</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Tổng hợp các thông tin quan trọng về thời gian chờ, hồ sơ cần thiết và các liên kết nhanh đến dịch vụ của AIA.</p>
             </div>
             
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 fade-in delay-1">
                 <!-- Left Column: Information -->
-                <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-gray-100 space-y-10">
+                <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-gray-100 space-y-8">
                     <!-- Waiting Periods -->
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Thời gian chờ theo quyền lợi</h3>
-                        <ul class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Thời gian chờ theo quyền lợi</h3>
+                        <ul class="space-y-4">
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center"><i class="ri-check-line text-red-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">0 ngày</strong> cho tai nạn</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">0 ngày</strong> cho tai nạn</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center"><i class="ri-check-line text-red-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">30 ngày</strong> cho bệnh thông thường</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">30 ngày</strong> cho bệnh thông thường</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center"><i class="ri-check-line text-red-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">90 ngày</strong> cho bệnh đặc biệt</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">90 ngày</strong> cho bệnh đặc biệt</div>
                             </li>
                              <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center"><i class="ri-check-line text-red-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">90 ngày</strong> cho ung thư, ghép tạng</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">90 ngày</strong> cho ung thư, ghép tạng</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center"><i class="ri-check-line text-red-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">270 ngày</strong> cho các quyền lợi thai sản</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">270 ngày</strong> cho các quyền lợi thai sản</div>
                             </li>
                         </ul>
                     </div>
@@ -459,31 +456,31 @@
 
                     <!-- Claim Documents -->
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Hồ sơ yêu cầu bồi thường hợp lệ</h3>
-                        <ul class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Hồ sơ yêu cầu bồi thường hợp lệ</h3>
+                        <ul class="space-y-4">
                            <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Phiếu khám và chỉ định</strong> của bác sĩ</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Phiếu khám và chỉ định</strong> của bác sĩ</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Toa thuốc</strong> có chẩn đoán, tên bác sĩ, dấu cơ sở y tế</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Toa thuốc</strong> có chẩn đoán, tên bác sĩ, dấu cơ sở y tế</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Hóa đơn tài chính (VAT)</strong> đầy đủ</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Hóa đơn tài chính (VAT)</strong> đầy đủ</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Giấy ra viện / Tóm tắt bệnh án</strong> (nếu nội trú)</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Giấy ra viện / Tóm tắt bệnh án</strong> (nếu nội trú)</div>
                             </li>
                              <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Giấy chứng nhận phẫu thuật</strong> (nếu có)</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Giấy chứng nhận phẫu thuật</strong> (nếu có)</div>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><i class="ri-file-text-line text-blue-600 text-xl"></i></div>
-                                <div class="pt-1.5 text-gray-700"><strong class="font-semibold text-gray-900">Biên bản tai nạn</strong> (nếu yêu cầu quyền lợi tai nạn)</div>
+                                <div class="pt-1.5 text-gray-700 text-base"><strong class="font-semibold text-gray-900">Biên bản tai nạn</strong> (nếu yêu cầu quyền lợi tai nạn)</div>
                             </li>
                         </ul>
                     </div>
@@ -493,7 +490,7 @@
                 <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-gray-100 flex flex-col">
                     <!-- Quick Access -->
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Truy cập nhanh</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Truy cập nhanh</h3>
                         <div class="space-y-4">
                             <a href="https://www.aia.com.vn/vi/dich-vu/dich-vu-bao-hiem-suc-khoe-aia/bao-lanh-vien-phi.html" target="_blank" rel="noopener noreferrer" class="flex items-center p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                                 <div class="w-14 h-14 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mr-5 flex-shrink-0"><i class="ri-hospital-line text-2xl"></i></div>
@@ -538,8 +535,8 @@
                         </div>
                     </div>
                     
-                    <div class="mt-auto pt-10 border-t border-gray-100">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Liên hệ hỗ trợ chung</h3>
+                    <div class="mt-auto pt-8 border-t border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Liên hệ hỗ trợ chung</h3>
                          <div class="grid sm:grid-cols-2 gap-6">
                             <a href="tel:02838122777" class="p-6 text-center bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                                 <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4"><i class="ri-phone-line text-2xl"></i></div>
@@ -552,7 +549,7 @@
                                 <p class="text-gray-600 mt-1">vn.customer@aia.com</p>
                             </a>
                          </div>
-                         <p class="text-center text-gray-500 mt-8 text-sm">Đây là kênh hỗ trợ chung của AIA. Để được tư vấn cá nhân, vui lòng sử dụng thông tin ở mục Liên hệ bên dưới.</p>
+                         <p class="text-center text-gray-500 mt-6 text-sm">Đây là kênh hỗ trợ chung của AIA. Để được tư vấn cá nhân, vui lòng sử dụng thông tin ở mục Liên hệ bên dưới.</p>
                     </div>
                 </div>
             </div>
@@ -560,17 +557,17 @@
     </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-white">
+  <section id="contact" class="py-14 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Liên hệ cá nhân</h2>
-        <p class="text-lg text-gray-600">Kết nối ngay – tôi phản hồi rõ ràng, không làm phiền</p>
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Liên hệ cá nhân</h2>
+        <p class="text-base sm:text-lg text-gray-600">Kết nối ngay – tôi phản hồi rõ ràng, không làm phiền</p>
       </div>
       <div class="contact-grid">
-        <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 fade-in delay-1 flex flex-col justify-between">
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-gray-100 fade-in delay-1 flex flex-col justify-between">
           <div>
             <h3 class="text-2xl font-bold text-gray-900 mb-6">Thông tin liên hệ</h3>
-            <ul class="space-y-4 text-gray-700 mb-8">
+            <ul class="space-y-4 text-gray-700 mb-8 text-base">
               <li><strong class="text-gray-900">Họ tên:</strong> Nguyễn Thanh Phong</li>
               <li><strong class="text-gray-900">Điện thoại:</strong> <a class="text-red-600 hover:underline" href="tel:0967140556">0967 140 556</a></li>
               <li><strong class="text-gray-900">Email:</strong> <a class="text-red-600 hover:underline" href="mailto:nguyenphong.tfac@gmail.com">nguyenphong.tfac@gmail.com</a></li>
@@ -584,10 +581,10 @@
         </div>
         <div class="cta-panel fade-in delay-2">
           <h3 class="text-3xl lg:text-4xl mb-6">Hãy bắt đầu hành trình tài chính thông minh hôm nay</h3>
-          <p class="text-[1.05rem] text-red-100 leading-relaxed mb-8 max-w-xl">
+          <p class="text-lg text-red-100 leading-relaxed mb-8 max-w-xl">
             Chỉ một cuộc gọi hoặc tin nhắn – tôi giúp bạn soi rõ nhu cầu, cấu trúc quyền lợi và tránh lỗ hổng tài chính không đáng có.
           </p>
-          <ul class="cta-bullets space-y-4 mb-28">
+          <ul class="cta-bullets space-y-4 mb-12 lg:mb-20">
             <li><span class="dot"></span>Phân tích minh bạch – Không ép buộc</li>
             <li><span class="dot"></span>Tối ưu quyền lợi theo dòng tiền gia đình</li>
             <li><span class="dot"></span>Hỗ trợ sự kiện bảo hiểm 24/7</li>
@@ -694,52 +691,146 @@
   </div>
 
   <script>
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if(el) window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
-    }
-    document.addEventListener('click', (e)=>{
-      const btn = e.target.closest('[data-target]');
-      if(btn){
-        const id = btn.getAttribute('data-target');
+      // Smooth Scroll
+      function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = el.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      document.querySelectorAll('[data-target]').forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = button.getAttribute('data-target');
           scrollToId(id);
-          document.querySelectorAll('#mainNavButtons button, #mainNavButtons a').forEach(b=>{
-            b.classList.remove('nav-btn-active');
-            b.classList.add('nav-btn');
-            if(b.getAttribute('data-target')===id){
-              b.classList.add('nav-btn-active');
-              b.classList.remove('nav-btn');
+          
+          // Update active nav button styles
+          document.querySelectorAll('#mainNavButtons button, #mainNavButtons a, #mobileMenu button, #mobileMenu a').forEach(b => {
+            const bTarget = b.getAttribute('data-target');
+            if (b.closest('#mainNavButtons')) {
+                b.classList.remove('nav-btn-active');
+                b.classList.add('nav-btn');
+            } else if (b.closest('#mobileMenu')) {
+                b.classList.remove('bg-red-600', 'text-white');
+                b.classList.add('hover:bg-red-50', 'text-gray-700');
             }
           });
-          if(window.innerWidth < 768){
+          
+          document.querySelectorAll(`[data-target="${id}"]`).forEach(activeBtn => {
+             if (activeBtn.closest('#mainNavButtons')) {
+                activeBtn.classList.add('nav-btn-active');
+                activeBtn.classList.remove('nav-btn');
+             } else if (activeBtn.closest('#mobileMenu')) {
+                activeBtn.classList.add('bg-red-600', 'text-white');
+                activeBtn.classList.remove('hover:bg-red-50', 'text-gray-700');
+             }
+          });
+          
+          if (window.innerWidth < 768) {
             mobileMenu.classList.add('hidden');
           }
-      }
-    });
-
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          en.target.classList.add('in-view');
-        }
+        });
       });
-    }, { threshold:.08 });
-    document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-    
-    window.addEventListener('load', () => {
-        if (window.location.hash) {
-            const id = window.location.hash.substring(1);
-            const el = document.getElementById(id);
-            if (el) {
-                setTimeout(() => {
-                    scrollToId(id);
-                }, 100);
-            }
+      
+      // Intersection Observer for fade-in animations
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: .08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      
+      // Scroll to hash on page load
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        setTimeout(() => {
+          scrollToId(id);
+        }, 100);
+      }
+
+      // Image Slider in "About Me" section
+      const slider = document.getElementById('image-slider');
+      if (slider) {
+        const track = slider.querySelector('.slider-track');
+        const dotsContainer = slider.querySelector('.slider-dots');
+        const slides = Array.from(track.children);
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        // Create dots
+        for (let i = 0; i < slideCount; i++) {
+          const dot = document.createElement('button');
+          dot.classList.add('slider-dot');
+          dot.addEventListener('click', () => {
+            goToSlide(i);
+            resetAutoPlay();
+          });
+          dotsContainer.appendChild(dot);
         }
+
+        const dots = Array.from(dotsContainer.children);
+
+        function goToSlide(index) {
+          if (index < 0 || index >= slideCount) return;
+          track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          currentIndex = index;
+          updateDots();
+        }
+
+        function updateDots() {
+          dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentIndex + 1) % slideCount;
+            goToSlide(nextIndex);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+        
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('mouseleave', startAutoPlay);
+
+        // Initial setup
+        goToSlide(0);
+        startAutoPlay();
+      }
     });
   </script>
 <script type="module" src="/index.tsx"></script>
