@@ -48,7 +48,7 @@
       pointer-events:none;
     }
 
-    .nav-btn-active { @apply bg-red-600 text-white; }
+    .nav-btn-active { @apply bg-red-600 text-white px-4 py-2 rounded-full transition-all cursor-pointer whitespace-nowrap; }
     .nav-btn { @apply px-4 py-2 rounded-full text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer whitespace-nowrap; }
 
     /* Icon Buttons */
@@ -208,7 +208,7 @@
           <h1 class="font-bold text-xl text-gray-800">Nguyễn Thanh Phong</h1>
         </div>
         <div id="mainNavButtons" class="hidden md:flex space-x-4 items-center">
-          <button data-target="home" class="nav-btn-active px-4 py-2 rounded-full transition-all cursor-pointer whitespace-nowrap">Trang chủ</button>
+          <button data-target="home" class="nav-btn-active">Trang chủ</button>
           <button data-target="about" class="nav-btn">Về tôi</button>
           <button data-target="services" class="nav-btn">Dịch vụ</button>
           <button data-target="support" class="nav-btn">Hỗ trợ</button>
@@ -308,7 +308,7 @@
             <h3 class="text-2xl font-bold text-gray-900 mb-5">Minh bạch và Chuyên môn là nền tảng</h3>
             <div class="text-base text-gray-700 leading-7 space-y-4">
                 <p>
-                    Ngoài vai trò là một nhà tư vấn bảo hiểm nhân thọ, tôi còn là thành viên Ban Quản trị tương lai của cộng đồng <a href="#" class="text-red-600 hover:underline"><strong>Bảo vệ Quyền lợi Khách hàng</strong></a> – nơi hoạt động với sứ mệnh xây dựng một thị trường bảo hiểm công bằng và minh bạch tại Việt Nam.
+                    Ngoài vai trò là một nhà tư vấn bảo hiểm nhân thọ, tôi còn là thành viên Ban Quản trị tương lai của cộng đồng <a href="https://www.facebook.com/groups/bvqlkhbhnt/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" class="text-blue-600 hover:underline"><strong>Bảo vệ Quyền lợi Khách hàng</strong></a> – nơi hoạt động với sứ mệnh xây dựng một thị trường bảo hiểm công bằng và minh bạch tại Việt Nam.
                 </p>
                 <p>
                     Với nền tảng <strong>10 năm kinh nghiệm trong lĩnh vực kiểm toán, tài chính và quản trị</strong>, tôi không nhìn nhận bảo hiểm đơn thuần là một sản phẩm, mà là một công cụ tài chính quan trọng. Tôi áp dụng góc nhìn chuyên môn này để giúp bạn:
@@ -323,9 +323,9 @@
                 </p>
             </div>
             <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-                <a href="https://www.facebook.com/groups/baovequyenloikhachhang" target="_blank" rel="noopener" class="inline-flex items-center gap-x-3 text-gray-700 font-semibold hover:text-red-600 transition-colors group">
-                    <i class="ri-group-2-line text-2xl text-red-500 group-hover:text-red-600 transition-colors"></i>
-                    <span>Tham gia cộng đồng <strong class="text-red-600">Bảo vệ Quyền lợi Khách hàng</strong></span>
+                <a href="https://www.facebook.com/groups/bvqlkhbhnt/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" class="inline-flex items-center gap-x-3 text-blue-600 font-semibold hover:text-blue-700 transition-colors group">
+                    <i class="ri-facebook-fill text-2xl text-blue-600 group-hover:text-blue-700 transition-colors"></i>
+                    <span>Tham gia cộng đồng <strong>Bảo vệ Quyền lợi Khách hàng</strong></span>
                 </a>
             </div>
         </div>
@@ -697,14 +697,44 @@
       });
       
       // Intersection Observer for fade-in animations
-      const observer = new IntersectionObserver(entries => {
+      const fadeInObserver = new IntersectionObserver(entries => {
         entries.forEach(en => {
           if (en.isIntersecting) {
             en.target.classList.add('in-view');
           }
         });
       }, { threshold: .08 });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      document.querySelectorAll('.fade-in').forEach(el => fadeInObserver.observe(el));
+
+      // Intersection Observer for active nav state on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('#mainNavButtons [data-target]');
+      const mobileNavLinks = document.querySelectorAll('#mobileMenu [data-target]');
+      
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+
+            navLinks.forEach(link => {
+              link.classList.toggle('nav-btn-active', link.getAttribute('data-target') === id);
+              link.classList.toggle('nav-btn', link.getAttribute('data-target') !== id);
+            });
+            
+            mobileNavLinks.forEach(link => {
+              const isActive = link.getAttribute('data-target') === id;
+              link.classList.toggle('bg-red-600', isActive);
+              link.classList.toggle('text-white', isActive);
+              link.classList.toggle('hover:bg-red-50', !isActive);
+              link.classList.toggle('text-gray-700', !isActive);
+            });
+          }
+        });
+      }, { rootMargin: "-100px 0px -50% 0px" });
+
+      sections.forEach(section => {
+        if(section.id) sectionObserver.observe(section);
+      });
       
       // Scroll to hash on page load
       if (window.location.hash) {
