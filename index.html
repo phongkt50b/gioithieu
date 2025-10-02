@@ -48,8 +48,27 @@
       pointer-events:none;
     }
 
-    .nav-btn-active { @apply bg-red-600 text-white px-4 py-2 rounded-full transition-all cursor-pointer whitespace-nowrap; }
-    .nav-btn { @apply px-4 py-2 rounded-full text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer whitespace-nowrap; }
+    .nav-btn-active, .nav-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-btn-active {
+      background-color: var(--aia-red);
+      color: white;
+    }
+    .nav-btn {
+      color: #374151; /* text-gray-700 */
+      background-color: transparent;
+    }
+    .nav-btn:hover {
+      background-color: var(--aia-red-tint);
+      color: var(--aia-red);
+    }
 
     /* Icon Buttons */
     .btn-icon {
@@ -173,13 +192,13 @@
     .slider-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.25);
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
     }
     .slider-dot.active {
-      background: white;
-      box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
+      background: var(--aia-red);
+      box-shadow: 0 0 0 3px rgba(212, 0, 26, 0.2);
     }
     .slider-track img {
         aspect-ratio: 1 / 1;
@@ -293,17 +312,17 @@
       
       <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-lg border border-gray-100 grid lg:grid-cols-2 lg:gap-12 items-start">
         <div class="lg:order-2 fade-in delay-1">
-            <div id="image-slider" class="relative rounded-2xl shadow-lg overflow-hidden bg-gray-100">
+            <div id="image-slider" class="relative rounded-2xl shadow-lg overflow-hidden bg-white">
               <div class="slider-track flex transition-transform duration-700 ease-in-out">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-01.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 1" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-02.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 2" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-03.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 3" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-04.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 4" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-05.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 5" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-06.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 6" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-07.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 7" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-08.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 8" class="w-full flex-shrink-0 object-cover">
-                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-09.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 9" class="w-full flex-shrink-0 object-cover">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-01.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 1" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-02.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 2" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-03.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 3" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-04.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 4" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-05.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 5" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-06.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 6" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-07.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 7" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-08.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 8" class="w-full flex-shrink-0">
+                <img src="https://phongkt50b.github.io/gioithieu/images/gioithieu-09.jpeg" alt="Giới thiệu về Nguyễn Thanh Phong 9" class="w-full flex-shrink-0">
               </div>
               <div class="slider-dots absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
               </div>
