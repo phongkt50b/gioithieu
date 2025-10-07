@@ -43,11 +43,31 @@
       background-color: var(--aia-red-tint);
       color: var(--aia-red);
     }
+
+    /* === BẮT ĐẦU PHẦN SỬA LỖI LAYOUT === */
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden; /* Ngăn body tự cuộn */
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1; /* Cho phép main co giãn để lấp đầy không gian còn lại */
+      overflow-y: auto; /* Thêm thanh cuộn cho main nếu cần */
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* === KẾT THÚC PHẦN SỬA LỖI LAYOUT === */
   </style>
 </head>
-<body class="antialiased min-h-screen bg-white">
-  <!-- NAV -->
-  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
+<body class="antialiased bg-white">
+  <nav class="w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
         <a href="index.html" class="flex items-center">
@@ -82,9 +102,7 @@
   </nav>
 
   <main>
-    <iframe src="https://phongkt50b.github.io/aiademo3/" title="Công Cụ" 
-            style="position: fixed; top: 70px; bottom: 0; left: 0; width: 100%; border: none;">
-    </iframe>
+    <iframe src="https://phongkt50b.github.io/aiademo3/" title="Công Cụ"></iframe>
   </main>
   
   <script>
@@ -97,7 +115,6 @@
       if (btn) {
         e.preventDefault();
         const id = btn.getAttribute('data-target');
-        // Điều hướng về trang chủ với hash tương ứng
         window.location.href = 'index.html#' + id;
       }
     });
